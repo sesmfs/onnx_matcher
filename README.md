@@ -6,6 +6,7 @@ Using **pattern matcher** in onnx model for subgraph match and replace.
 # Get Start
 - Python Code: [happy_onnx_modify.py](happy_onnx_modify.py)
 ```python
+# Define a replace policy function.
 def conv_swish_to_conv_relu(i, subgraph):
     conv = subgraph[0]
     mul  = subgraph[2]
