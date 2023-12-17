@@ -13,7 +13,6 @@ def conv_swish_to_conv_relu(i, subgraph):
     relu = helper.make_node("Relu", inputs=conv.output, outputs=mul.output, name=f"{conv.output[0]}_relu")
     return [conv, relu], []
 
-
 # Define a subgraph pattern.
 subgraph_matcher = onnx_matcher.Matcher(
     """
