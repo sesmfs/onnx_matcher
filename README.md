@@ -1,5 +1,5 @@
 # ONNX Pattern Matcher
-Using **pattern matcher** in onnx model for subgraph match and replace.
+Using **pattern matcher** in onnx model to match and replace subgraphs.
 ![](sample.png)
 
 
