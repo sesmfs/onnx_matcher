@@ -6,7 +6,7 @@ name = "yolov5s.onnx"
 model = onnx.load(name)
 
 # Define a replace policy function.
-def conv_swish_to_conv_relu(i, subgraph):
+def conv_swish_to_conv_relu(model, i, subgraph):
     conv = subgraph[0]
     mul  = subgraph[2]
     relu = helper.make_node("Relu", inputs=conv.output, outputs=mul.output, name=f"{conv.output[0]}_relu")

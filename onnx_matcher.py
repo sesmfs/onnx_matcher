@@ -165,25 +165,19 @@ class Lexer:
         # Compile the extraction regular expression.
         extract_name_and_argument = re.compile("([\W\w]+)\(([\W\w]+)\)")
         #     Slice(c2, ?)
-
         
         # Remove spaces and split patterns by the break line.
         lines = [item for item in pattern.replace(" ", "").split("\n") if item != ""]
 
-        
         # Parsing patterns by lexical analyzer.
         self.pattern  = pattern
         self.lines    = lines
         self.patterns = []
         for line in lines:
-            
             names_and_arguments = extract_name_and_argument.findall(line)
-            
             assert len(names_and_arguments) == 1, f"Unexpected line: {line}. The valid symbol is: name(input_argument, output_argument)"
             operator_names, argumants = names_and_arguments[0]
             inputs, outputs = self.parse_arguments(argumants)
-    
-     
             self.patterns.append([operator_names.split("/"), inputs, outputs]) 
         
     def parse_variable(self):
@@ -195,7 +189,6 @@ class Lexer:
             # If a valid token(alpha/number/_ or ?) for variable.
             if self.token.isalnum() or self.token == "?" or self.token == "_":
                 variable_name += self.token
-                
             else:
                 break
             
@@ -224,13 +217,11 @@ class Lexer:
         self.itoken = 0
         self.symbols = symbols
 
-        
         lists = []
         while self.itoken < len(symbols):
             self.token = symbols[self.itoken]
             if self.token == "[":
                 lists.append(self.parse_list())
-                log(self.parse_list())
             else:
                 lists.append([self.parse_variable()])      
             self.itoken += 1
